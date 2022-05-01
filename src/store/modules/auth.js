@@ -13,8 +13,9 @@ export default {
     login({ commit }, user) {
       return AuthService.login(user).then(
         user => {
+         
           commit('loginSuccess', user);
-          return Promise.resolve(user);
+          return Promise.resolve(user), console.log("USER: "+ Promise.resolve(user));
         },
         error => {
           commit('loginFailure');

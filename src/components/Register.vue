@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="max-w-sm rounded shadown-lg">
+ <div  class="flex h-screen items-center justify-center cursor-pointer bg-gray-900 hover:text-white space-x-6 p-6">
+    <header class="bg-gray-800 shadown-lg  rounded-lg align-center space-y-4 p-4 sm:px-4 sm:py-3 lg:p-4 xl:px-8 xl:py-6">
       <div class="md:w-3/3 block text-gray-500 font-bold text-center">
         <span>Registro de Usuario</span>
 
@@ -80,8 +80,7 @@
           <div class="md:w-1/3"></div>
           <div class="md:w-2/3">
             <button
-              class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-              type="button"
+              class="btn"
               @click="register()"
             >
               Registrese
@@ -91,7 +90,7 @@
       </form>
 
       {{ password }}
-    </div>
+    </header>
   </div>
 </template>
 

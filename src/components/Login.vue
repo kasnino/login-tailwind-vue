@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <div class="max-w-sm rounded shadown-lg">
-      <div class="md:w-2/3 block text-gray-500 font-bold text-center">
-        <span>Inicie Sesion</span>
+  <div  class="flex items-center h-screen justify-center cursor-pointer bg-gray-900 hover:text-white space-x-6 p-6">
+     <header class="bg-gray-800 shadown-lg  rounded-lg align-center space-y-4 p-4 sm:px-4 sm:py-3 lg:p-4 xl:px-8 xl:py-6">
+   
+    <div class=" w-full rounded shadown-lg">
+      <div class="w-full block text-white font-bold text-center">
+        <h2 class="text-slate-900 font-semibold">Inicie Sesion</h2>
         <pre>
           eve.holt@reqres.in
           cityslicka
@@ -62,12 +64,13 @@
         </p>
         <div class="md:flex md:items-center">
           <div class="md:w-1/3"></div>
-          <div class="md:w-2/3">
+          <div     class="btn">
             <button
-              class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+          
               type="button"
               @click="login()"
             >
+              
               Inicia Sesion
             </button>
           </div>
@@ -76,13 +79,15 @@
 
       {{ password }}
     </div>
+      </header>
   </div>
+   
 </template>
 
 <script>
 // import auth from "../services/auth";
 import { useStore } from 'vuex'
-import { reactive } from "vue";
+import { reactive, computed, onMounted  } from "vue";
 import router  from '../router'
 export default {
   setup() {
@@ -98,13 +103,16 @@ export default {
       error: false,
     });
 
+     const loggedIn = computed(() => {
+      return store.state.auth.status.loggedIn;
+    });
 
-
-     function login() {
+     async function login() {
      try {
-      store.dispatch("auth/login", form)
-      console.log("login vues exitosoooo")
+      const result = await store.dispatch("auth/login", form)
+      console.log("login vues exitosoooo:: " + result)
       router.push({ path: '/' })
+     
      } catch (error) {
              console.log(error);
          }
@@ -119,6 +127,7 @@ export default {
     return {
       form,
       login,
+      loggedIn
     };
   },
 };
